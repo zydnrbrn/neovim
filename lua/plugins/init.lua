@@ -124,6 +124,7 @@ local default_plugins = {
   -- lsp stuff
   {
     "williamboman/mason.nvim",
+    lazy = false,
     cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
     opts = function()
       return require "plugins.configs.mason"
@@ -277,6 +278,17 @@ local default_plugins = {
     vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
     vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
     vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+  end
+},
+  {
+  'olivercederborg/poimandres.nvim',
+    lazy = false,
+  config = function()
+    require('poimandres').setup {
+      -- leave this setup function empty for default config
+      -- or refer to the configuration section
+      -- for configuration options
+    }
   end
 },
 }
