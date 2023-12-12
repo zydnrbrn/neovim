@@ -195,6 +195,7 @@ local default_plugins = {
 
   {
     "numToStr/Comment.nvim",
+    lazy = false,
     keys = {
       { "gcc", mode = "n", desc = "Comment toggle current line" },
       { "gc", mode = { "n", "o" }, desc = "Comment toggle linewise" },
@@ -261,10 +262,31 @@ local default_plugins = {
       require("which-key").setup(opts)
     end,
   },
+  -- {
+  --   "github/copilot.vim",
+  --   cmd = "Copilot",
+  --   lazy = false,
+  -- },
+  -- Remove the `use` here if you're using folke/lazy.nvim.
   {
-    "github/copilot.vim",
-    cmd = "Copilot",
+    "Exafunction/codeium.vim",
     lazy = false,
+    cmd = "Codeium",
+    config = function()
+      -- Change '<C-g>' here to any keycode you like.
+      vim.keymap.set("i", "<C-g>", function()
+        return vim.fn["codeium#Accept"]()
+      end, { expr = true })
+      vim.keymap.set("i", "<c-;>", function()
+        return vim.fn["codeium#CycleCompletions"](1)
+      end, { expr = true })
+      vim.keymap.set("i", "<c-,>", function()
+        return vim.fn["codeium#CycleCompletions"](-1)
+      end, { expr = true })
+      vim.keymap.set("i", "<c-x>", function()
+        return vim.fn["codeium#Clear"]()
+      end, { expr = true })
+    end,
   },
 }
 
